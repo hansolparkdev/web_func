@@ -4,5 +4,6 @@ module.exports = {
     '/': { page: '/index' },
     '/about': { page: '/about' },
     '/slide': { page: '/slide' },
+    '/scroll': { page: '/scroll' },
   }),
 };

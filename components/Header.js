@@ -2,6 +2,8 @@ import Link from 'next/link';
 
 const linkStype = {
   marginRight: 15,
+  textTransform: 'uppercase',
+  textDecoration: 'none',
 };
 
 const Header = () => (
@@ -14,6 +16,9 @@ const Header = () => (
     </Link>
     <Link href="/slide/">
       <a style={linkStype}>slide</a>
+    </Link>
+    <Link href="/scroll/">
+      <a style={linkStype}>scroll</a>
     </Link>
   </div>
 );
