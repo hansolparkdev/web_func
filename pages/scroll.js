@@ -1,27 +1,37 @@
+/* eslint-disable consistent-return */
 /* eslint-disable no-use-before-define */
 import React, { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
 
 const Scroll = () => {
   const [scrollData, setScrollData] = useState();
-  const [jpdata, setJpdata] = useState();
+  const [current, setCurrent] = useState(0);
   useEffect(() => {
     window.addEventListener('scroll', () => {
       // console.log(window.scrollY);
       setScrollData(window.scrollY);
     });
     // console.log(scrollData);
-    if (window.scrollY === 100) {
-      for (let i = 0; i < 97; i += 1) {
-        setJpdata(i);
-      }
+    if (scrollData > 100) {
+      // window.scrollTo({ top: 600, left: 0, behavior: 'smooth' });
+      const SetInterval = setInterval(() => {
+        if (current >= 97) return clearInterval(SetInterval);
+        setCurrent(current + 1);
+      }, 5);
+      return () => clearInterval(SetInterval);
     }
-  }, [scrollData, jpdata]);
+    return function cleanup() {
+      window.removeEventListener('scroll', () => {
+        setScrollData(window.scrollY);
+      });
+    };
+  }, [scrollData, current]);
 
   return (
     <Layout>
       <h1>스크롤 이벤트</h1>
-      <div style={{ color: 'green', height: '1800px' }}>{jpdata}</div>
+      <div style={{ color: 'green', height: '300px' }}>{current}</div>
+      <div style={{ color: 'green', bacgroundColor: 'black', height: '1800px' }}>{current}</div>
     </Layout>
   );
 };
